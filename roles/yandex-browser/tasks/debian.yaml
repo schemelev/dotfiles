@@ -1,0 +1,10 @@
+- name: download Yandex Browser .deb
+  get_url:
+    url: '{{ yandex_browser_url }}/{{ yandex_browser_deb }}'
+    dest: /tmp/Yandex.deb
+    owner: root
+    group: root
+    mode: 0644
+
+- name: install Yandex Browser .deb
+  apt: deb='/tmp/Yandex.deb'

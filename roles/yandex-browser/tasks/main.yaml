@@ -1,0 +1,9 @@
+---
+- name: Check if Yandex Browser is installed
+  shell: dpkg -l | grep -E '^ii' | grep yandex-browser-beta
+  register: yandex_browser_installed
+  ignore_errors: yes
+
+- name: Install Yandex Browser
+  include: debian.yaml
+  when: yandex_browser_installed.rc != 0

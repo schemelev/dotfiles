@@ -1,0 +1,9 @@
+---
+- hosts: all
+  roles:
+    - yandex-browser
+    - atom
+    - chrome
+    - git
+    - virtualbox
+    - vagrant
