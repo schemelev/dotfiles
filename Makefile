@@ -7,4 +7,6 @@ install_ansible:
 	sudo apt-get install ansible -y
 
 install_addons:
-	sudo ansible-playbook -i hosts addons.yml -c local -K
+	ansible-playbook -i hosts addons.yml -K
+
+# .PHONY:

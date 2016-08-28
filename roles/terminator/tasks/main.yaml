@@ -6,6 +6,7 @@
 
 - name: install Terminator
   apt:
-    name: "terminator"
+    name: terminator
     state: installed
   when: terminator_installed.rc != 0
+  become: yes
