@@ -7,3 +7,12 @@
     - virtualbox
     - vagrant
     - terminator
+    - keepass2
+
+    # TODO install:
+    # - nvm # https://github.com/creationix/nvm#installation
+
+    # default-jre # Java for selenium
+
+    # Default local time for Ubuntu
+    # sudo timedatectl set-local-rtc 1 --adjust-system-clock

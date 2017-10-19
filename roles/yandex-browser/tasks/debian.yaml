@@ -1,10 +1,18 @@
-- name: download Yandex Browser .deb
-  get_url:
-    url: '{{ yandex_browser_url }}/{{ yandex_browser_deb }}'
-    dest: /tmp/Yandex.deb
-    owner: root
-    group: root
-    mode: 0644
+- apt_key:
+    url: https://repo.yandex.ru/yandex-browser/YANDEX-BROWSER-KEY.GPG
+    state: present
+  become: yes
 
-- name: install Yandex Browser .deb
-  apt: deb='/tmp/Yandex.deb'
+- apt_repository:
+    repo: deb https://repo.yandex.ru/yandex-browser/deb beta main
+    state: present
+    filename: 'yandex-browser-beta'
+    update_cache: yes
+  become: yes
+
+- name: install
+  apt:
+    name: yandex-browser-beta
+    state: present
+    update_cache: yes
+  become: yes

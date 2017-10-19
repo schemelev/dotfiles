@@ -1,18 +1,19 @@
 ---
 - name: Configure the Oracle APT key
   apt_key:
-      url: https://www.virtualbox.org/download/oracle_vbox.asc
+      url: http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
       state: present
   become: yes
 
 - name: Configure the VirtualBox APT repositories
   apt_repository:
-    repo: "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    repo: "deb http://download.virtualbox.org/virtualbox/debian dist {{ansible_lsb.codename}} contrib"
     state: present
+    update_cache: yes
   become: yes
 
 - name: Install VirtualBox
   apt:
     pkg: virtualbox
-    state: latest
+    state: present
   become: yes

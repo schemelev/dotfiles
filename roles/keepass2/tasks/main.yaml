@@ -1,0 +1,9 @@
+---
+- name: check installed
+  shell: dpkg -l | grep -E '^ii' | grep keepass2
+  register: keepass2_installed
+  ignore_errors: yes
+
+- name: include install
+  include: install.yaml
+  when: keepass2_installed.rc != 0

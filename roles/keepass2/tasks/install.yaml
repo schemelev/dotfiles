@@ -1,13 +1,14 @@
 ---
 - name: add ppa
   apt_repository:
-    repo: ppa:webupd8team/atom
+    repo: ppa:jtaylor/keepass
     state: present
     update_cache: yes
   become: yes
 
-- name: install
+- name: instal
   apt:
-    name: atom
-    state: latest
+    name: keepass2
+    state: present
+    update_cache: yes
   become: yes

@@ -1,20 +1,17 @@
----
-
-- name: Install dependencies packages with APT
+- apt_key:
+    url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+    state: present
   become: yes
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - libxss1
-    - libappindicator1
-    - libindicator7
 
-- name: download Chrome .deb
-  get_url:
-    url: '{{ chrome_mirror }}/{{ chrome_deb }}'
-    dest: /tmp/{{ chrome_deb }}
-    owner: root
-    group: root
-    mode: 0644
+- apt_repository:
+    repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+    filename: 'google-chrome-stable'
+    update_cache: yes
+  become: yes
 
-- name: install Chrome .deb
-  apt: deb='/tmp/{{ chrome_deb }}'
+- name: install
+  apt:
+    name: google-chrome-stable
+    state: present
+  become: yes
